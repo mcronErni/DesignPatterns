@@ -8,4 +8,11 @@ public class HtmlDocument {
         nodes.add(node);
     }
 
+    public void execute(Operation operation){
+        for(var node : nodes){
+            node.execute(operation);
+        }
+    }
+
+
 }
