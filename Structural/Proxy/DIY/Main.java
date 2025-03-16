@@ -1,5 +1,7 @@
 public class Main{
     public static void main(String[] args) {
-        System.out.println("Hello");
+        Image image = new ImageProxy("test.jpg");
+        image.display();
+        image.display();
     }
 }
