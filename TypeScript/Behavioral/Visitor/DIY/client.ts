@@ -7,35 +7,35 @@ interface CarService {
     apply(car: GasCar): void;
 }
 
-class ElectricCar implements Car {
+export class ElectricCar implements Car {
     apply(service: CarService): void {
         service.apply(this);
     }
 }
 
-class GasCar implements Car {
+export class GasCar implements Car {
     apply(service: CarService): void {
         service.apply(this);
     }
 }
 
-class InspectionService implements CarService {
-    apply(car: ElectricCar): void {
-        console.log("Checking Electric Car's Battery Health");
-    }
-
-    apply(car: GasCar): void {
-        console.log("Inspecting Engine, Fuel Injectors, and Oil");
+export class InspectionService implements CarService {
+    apply(car: ElectricCar | GasCar): void {
+        if (car instanceof ElectricCar) {
+            console.log("Checking Electric Car's Battery Health");
+        } else if (car instanceof GasCar) {
+            console.log("Inspecting Engine, Fuel Injectors, and Oil");
+        }
     }
 }
 
 class UpgradeService implements CarService {
-    apply(car: ElectricCar): void {
-        console.log("Remapping Electric Car's Software");
-    }
-
-    apply(car: GasCar): void {
-        console.log("Upgrading Air Intake, Tuning the Engine.");
+    apply(car: ElectricCar | GasCar): void {
+        if (car instanceof ElectricCar) {
+            console.log("Remapping Electric Car's Software");
+        } else if (car instanceof GasCar) {
+            console.log("Upgrading Air Intake, Tuning the Engine.");
+        }
     }
 }
 
